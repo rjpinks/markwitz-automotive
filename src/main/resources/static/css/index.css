@@ -1,0 +1,22 @@
+/* Car-list Elements */
+
+.cars-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10%;
+}
+
+.car-list-banner {
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.car-list-item {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#car-image {
+    border-radius: 32px;
+}

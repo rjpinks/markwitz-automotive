@@ -11,4 +11,5 @@ public class CarDto {
     private String model;
     private int modelYear;
     private String carUrl;
+    private long milage;
 }
