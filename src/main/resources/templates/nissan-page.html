@@ -1,0 +1,26 @@
+<html xmlns:th="http://thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    lang="en"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nissan</title>
+</head>
+
+<body>
+    <section layout:fragment="body">
+        <div th:each="car: ${cars}">
+            <ul>
+                <li th:text="${car.id}"></li>
+                <li th:text="${car.make}"></li>
+                <li th:text="${car.model}"></li>
+                <li th:text="${car.modelYear}"></li>
+            </ul>
+            <img th:src="${car.carUrl}" width="400px" height="250px" />
+        </div>
+    </section>
+</body>
+
+</html>
