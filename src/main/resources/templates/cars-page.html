@@ -11,14 +11,26 @@
 
 <body>
     <section layout:fragment="body">
-        <div th:each="car: ${cars}">
-            <ul>
-                <li th:text="${car.id}"></li>
-                <li th:text="${car.make}"></li>
-                <li th:text="${car.model}"></li>
-                <li th:text="${car.modelYear}"></li>
-            </ul>
-            <img th:src="${car.carUrl}" width="400px" height="250px" />
+        <div id="${car.id}" class="columns" th:each="car: ${cars}">
+            <div id="car-list-container" class="column is-one-fifth">
+                <ul class="cars-list">
+                    <li class="car-list-banner">Make:</li>
+                    <li class="car-list-item" th:text="${car.make}"></li>
+                </ul>
+                <ul class="cars-list">
+                    <li class="car-list-banner">Model:</li>
+                    <li class="car-list-item" th:text="${car.model}"></li>
+                </ul>
+                <ul class="cars-list">
+                    <li class="car-list-banner">Year Made:</li>
+                    <li class="car-list-item" th:text="${car.modelYear}"></li>
+                </ul>
+                <ul class="cars-list">
+                    <li class="car-list-banner">Milage:</li>
+                    <li class="car-list-item" th:text="${car.milage}"></li>
+                </ul>
+            </div>
+            <img id="car-image" class="column is-three-fifths" th:src="${car.carUrl}" width="400px" height="250px" />
         </div>
     </section>
 </body>

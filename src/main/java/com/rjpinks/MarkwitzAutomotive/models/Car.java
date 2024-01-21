@@ -22,4 +22,5 @@ public class Car {
     private String model;
     private int modelYear;
     private String carUrl;
+    private long milage;
 }

@@ -39,6 +39,7 @@ public class CarServiceImpl implements CarService {
             .model(car.getModel())
             .modelYear(car.getModelYear())
             .carUrl(car.getCarUrl())
+            .milage(car.getMilage())
             .build();
 
         return carDto;
