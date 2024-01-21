@@ -67,4 +67,9 @@ public class CarController {
         model.addAttribute("cars", cars);
         return "mazda-page";
     }
+
+    @GetMapping("/contact")
+    public String displayContactInfo() {
+        return "contact";
+    }
 }
