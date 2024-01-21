@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+
+body {
+    font-family: "Fira Sans", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 /* Car-list Elements */
 
 .cars-list {
@@ -20,3 +26,29 @@
 #car-image {
     border-radius: 32px;
 }
+
+/* Media Queries to adjust car-list text */
+
+@media screen and (max-width: 1024px) {
+    .car-list-banner {
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    
+    .car-list-item {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .car-list-banner {
+        font-weight: bolder;
+        font-size: 25px;
+    }
+    
+    .car-list-item {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+  }
