@@ -26,6 +26,12 @@ public class CarServiceImpl implements CarService {
         return cars.stream().map((car) -> mapToCarDto(car)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<CarDto> findAllCarsByMake(String make) {
+        List<Car> cars = carRepository.findByMake(make);
+        return cars.stream().map((car) -> mapToCarDto(car)).collect(Collectors.toList());
+    }
+
     private CarDto mapToCarDto(Car car) {
         CarDto carDto = CarDto.builder()
             .id(car.getId())
@@ -37,4 +43,5 @@ public class CarServiceImpl implements CarService {
 
         return carDto;
     }
+
 }

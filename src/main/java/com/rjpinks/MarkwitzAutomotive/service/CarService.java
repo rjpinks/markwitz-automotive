@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CarService {
     List<CarDto> findAllCars();
+    List<CarDto> findAllCarsByMake(String make);
 }
