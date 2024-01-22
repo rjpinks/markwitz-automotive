@@ -32,6 +32,36 @@ public class CarServiceImpl implements CarService {
         return cars.stream().map((car) -> mapToCarDto(car)).collect(Collectors.toList());
     }
 
+    @Override
+    public Car saveCar(Car car) {
+        return carRepository.save(car);
+    }
+
+    @Override
+    public CarDto findCarById(long carId) {
+        Car car = carRepository.findById(carId).get();
+        return mapToCarDto(car);
+    }
+
+    @Override
+    public void updateCar(CarDto carDto) {
+        Car car = mapToCar(carDto);
+        carRepository.save(car);
+    }
+
+    private Car mapToCar(CarDto car) {
+        Car carDto = Car.builder()
+            .id(car.getId())
+            .make(car.getMake())
+            .model(car.getModel())
+            .modelYear(car.getModelYear())
+            .carUrl(car.getCarUrl())
+            .milage(car.getMilage())
+            .build();
+
+        return carDto;
+    }
+
     private CarDto mapToCarDto(Car car) {
         CarDto carDto = CarDto.builder()
             .id(car.getId())
