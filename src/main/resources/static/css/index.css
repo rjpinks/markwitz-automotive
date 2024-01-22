@@ -23,8 +23,12 @@ body {
     margin-top: 5px;
 }
 
-#car-image {
+img {
     border-radius: 32px;
+}
+
+#mwauto-image {
+    border-radius: 0px;
 }
 
 /* Media Queries to adjust car-list text */
@@ -34,21 +38,82 @@ body {
         font-weight: bolder;
         font-size: 20px;
     }
-    
+
     .car-list-item {
         font-size: 16px;
         margin-top: 5px;
     }
-  }
+}
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .car-list-banner {
         font-weight: bolder;
         font-size: 25px;
     }
-    
+
     .car-list-item {
         font-size: 20px;
         margin-top: 5px;
     }
-  }
+}
+
+/* Contact Us Elements */
+
+#list-header, #contact-header, #about-header {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 28px;
+    color: #485fc7;
+}
+
+#dropdown-header {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+#select-container {
+    margin-bottom: 6px;
+}
+
+.hours-item, #phone-number {
+    font-size: 18px;
+    margin-left: 3px;
+    margin-bottom: 6px;
+}
+
+#hours-header {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 24px;
+    color: #485fc7;
+}
+
+.about-header {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#markwitz-header {
+    font-size: 30px;
+}
+
+#staff-header {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.about-p {
+    margin-bottom: 9px;
+}
+
+/* Form Elements */
+
+#outer-form-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

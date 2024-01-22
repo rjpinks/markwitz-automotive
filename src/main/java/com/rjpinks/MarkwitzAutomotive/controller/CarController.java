@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
 import com.rjpinks.MarkwitzAutomotive.dto.CarDto;
+import com.rjpinks.MarkwitzAutomotive.models.Car;
 
 @Controller
 public class CarController {
@@ -19,7 +23,9 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/cars")
+    // Reading Car Mappings
+
+    @GetMapping("/")
     public String listCars(Model model) {
         List<CarDto> cars = carService.findAllCars();
         model.addAttribute("cars", cars);
@@ -71,5 +77,36 @@ public class CarController {
     @GetMapping("/contact")
     public String displayContactInfo() {
         return "contact";
+    }
+
+    // Create Car Mappings
+
+    @GetMapping("/cars/new")
+    public String newCarForm(Model model) {
+        Car car = new Car();
+        model.addAttribute("car", car);
+        return "new-car-form";
+    }
+
+    @PostMapping("/cars/new")
+    public String saveCar(@ModelAttribute("car") Car car) {
+        carService.saveCar(car);
+        return "redirect:/";
+    }
+
+    // Update Car Mappings
+
+    @GetMapping("/cars/{carId}/update")
+    public String updateCarForm(@PathVariable("carId") long carId, Model model) {
+        CarDto car = carService.findCarById(carId);
+        model.addAttribute("car", car);
+        return "update-car-form";
+    }
+
+    @PostMapping("/cars/{carId}/update")
+    public String updateCar(@PathVariable("carId") long carId, @ModelAttribute("car") CarDto car) {
+        car.setId(carId);
+        carService.updateCar(car);
+        return "redirect:/";
     }
 }
