@@ -19,7 +19,7 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/cars")
+    @GetMapping("/")
     public String listCars(Model model) {
         List<CarDto> cars = carService.findAllCars();
         model.addAttribute("cars", cars);

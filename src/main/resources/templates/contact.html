@@ -1,55 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link th:href="@{/css/index.js}" rel="stylesheet">
-    <title>Contact Us - MWAuto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link th:href="@{/css/index.css}" rel="stylesheet">
+  <title>Contact Us - MWAuto</title>
+  <link rel="icon" th:href="@{/images/MWA.png}" type="image/x-icon">
 </head>
+
 <body>
-    <!-- Navbar -->
-    <div>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-          <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </a>
-      
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-      
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a th:href="@{/cars}" class="navbar-item">
-                Cars
-              </a>
-      
-              <a th:href="@{/contact}" class="navbar-item">
-                Contact Us
-              </a>
-      
-              <div></div>
-            </div>
-      
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="buttons">
-                  <a class="button is-primary">
-                    <strong>Sign up</strong>
-                  </a>
-                  <a class="button is-light">
-                    Log in
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
+  <!-- Navbar -->
+  <div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}">
+          <img id="mwauto-image" th:src="@{/images/MWAuto.png}" width="150" height="150">
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a th:href="@{/}" class="navbar-item">
+            Cars
+          </a>
+
+          <a th:href="@{/contact}" class="navbar-item">
+            Contact Us
+          </a>
+
+          <div></div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-link">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Contact Information -->
+  <div id="contact-info-container" class="columns">
+
+    <section id="list-container" class="column is-one-quarter">
+      <h1 id="list-header">Hours and Contact Info</h1>
+      <p id="phone-number"><strong>Phone Number: </strong>555-867-5309</p>
+      <h2 id="hours-header">Hours</h2>
+      <ul id="hours-list">
+        <li class="hours-item"><strong>Monday-Friday: </strong>9AM - 8PM</li>
+        <li class="hours-item"><strong>Saturday: </strong>12PM - 7PM</li>
+        <li class="hours-item"><strong>Sunday: </strong>CLOSED</li>
+      </ul>
+    </section>
+
+    <!-- Email Section -->
+    <section class="column is-one-third">
+      <h1 id="contact-header">Send Us an Email</h1>
+
+      <h2 id="dropdown-header">Reason for email</h2>
+      <div id="select-container" class="select is-link">
+        <select>
+          <option>Purchase</option>
+          <option>Sale</option>
+          <option>General Question</option>
+          <option>Employment Opportunities</option>
+          <option>Complaint</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input is-link" type="text">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Message</label>
+        <div class="control">
+          <textarea class="textarea is-link" rows="15"></textarea>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="button is-link">Send</button>
+      </div>
+    </section>
+
+    <section id="about-container" class="column">
+      <h1 id="about-header">About Us</h1>
+      <div id="about-us-container">
+        <h2 id="markwitz-header" class="about-header">Here at Markwitz</h2>
+        <p class="about-p">We here at Markwitz Automotive are passionate about vehicles. Beyond that we're passionate about people. So it only makes sense that we're great at pairing people with the right used car. Our salesman have been serving our area for the last 40 years, and we're eager to continue!</p>
+        <p class="about-p">I, Mark Markwitz, began selling used cars after me and my son worked on his first car together. Before we knew it, we were buying project cars and flipping them after we were done. After he went off to college, I didn't stop. Now, we have some of the best mechanics, employees, and cars in our area!</p>
+        <div id="markwitz-img-container">
+          <img src="https://static7.depositphotos.com/1066655/745/i/450/depositphotos_7453661-stock-photo-elderly-black-man-smiling.jpg" />
+        </div>
+      </div>
+      <div id="image-container">
+        <h2 id="staff-header">Meet our staff!</h2>
+        <img
+          src="https://media.istockphoto.com/id/1056257342/photo/portrait-of-joyful-professional.jpg?s=1024x1024&w=is&k=20&c=oDA0gKxja46921aPwP52d8Ux4SMtYqZEpj2bXWKMQQY=" />
+          <h2 id="john-header" class="about-header">John Johnathon - Sales Specialist</h2>
+          <p class="about-p">John has been with us for the last seven years! He works closely with our mechanics and can tell you anything about any of our prime used vehicles! Smiling and always ready to pair you with the right vehicle, come see John any week day!</p>
+        <img
+          src="https://media.istockphoto.com/id/1181691257/photo/confident-female-manager-of-a-furniture-store-looking-at-camera-smiling-with-arms-crossed.jpg?s=2048x2048&w=is&k=20&c=k5yooiow504ajTkWic2Wy1LhZebtwVOzqK_Af-BcV00=" />
+          <h2 id="maria-header" class="about-header">Maria Mariwell - Purchasing Agent</h2>
+          <p class="about-p">Maria has been with us for the last 16 years! She has the keenest eye when it comes to finding prime vintage used vehicles! She can also spot out great deals on newer vehicles, which will pass the savings on down to you! Shes incredibly knowledable and well rounded when it comes to purchasing your used vehicles!</p>
+      </div>
+    </section>
+
+
+  </div>
 </body>
+
 </html>
