@@ -65,6 +65,7 @@
             <h1>EDIT</h1>
             <form role="form" method="POST" th:action="@{/cars/{carId}/update(carId=${car.id})}" th:object="${car}">
                 <input type="hidden" th:field="*{id}">
+                <p th:if="${#fields.hasErrors('id')}" style="color: red;" th:errors="*{id}"></p>
                 <div class="field">
                     <label for="make" class="label">Make</label>
                     <div class="control">
@@ -74,6 +75,7 @@
                             type="text"
                             th:field="*{make}"
                         >
+                        <p th:if="${#fields.hasErrors('make')}" style="color: red;" th:errors="*{make}"></p>
                     </div>
                 </div>
 
@@ -86,6 +88,7 @@
                             type="text"
                             th:field="*{model}"
                         >
+                        <p th:if="${#fields.hasErrors('model')}" style="color: red;" th:errors="*{model}"></p>
                     </div>
                 </div>
 
@@ -98,6 +101,7 @@
                             type="number"
                             th:field="*{modelYear}"
                         >
+                        <p th:if="${#fields.hasErrors('modelYear')}" style="color: red;" th:errors="*{modelYear}"></p>
                     </div>
                 </div>
 
@@ -110,21 +114,9 @@
                             type="number"
                             th:field="*{milage}"
                         >
+                        <p th:if="${#fields.hasErrors('milage')}" style="color: red;" th:errors="*{milage}"></p>
                     </div>
                 </div>
-
-                <!-- I think that the vin field is not usable because it isn't in the Dto -->
-                <!-- <div class="field">
-                    <label for="vin" class="label">VIN Number</label>
-                    <div class="control">
-                        <input 
-                            id="vin" 
-                            class="input is-link" 
-                            type="text"
-                            th:field="*{vin}"
-                        >
-                    </div>
-                </div> -->
 
                 <div class="field">
                     <label for="photo-url" class="label">Photo URL</label>
@@ -135,6 +127,7 @@
                             type="text"
                             th:field="*{carUrl}"
                         >
+                        <p th:if="${#fields.hasErrors('carUrl')}" style="color: red;" th:errors="*{carUrl}"></p>
                     </div>
                 </div>
 

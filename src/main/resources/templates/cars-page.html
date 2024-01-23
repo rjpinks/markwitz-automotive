@@ -30,8 +30,9 @@
                     <li class="car-list-item" th:text="${car.milage}"></li>
                 </ul>
                 <a class="button is-link" th:href="@{/cars/{carId}/update(carId=${car.id})}">Update</a>
+                <a class="button is-danger" th:href="@{/cars/{carId}/delete(carId=${car.id})}">Delete</a>
             </div>
-            <img id="car-image" class="column is-three-fifths" th:src="${car.carUrl}" width="400px" height="250px" />
+            <img alt="image of car" id="car-image" class="column is-three-fifths" th:src="${car.carUrl}" width="400px" height="250px" />
         </div>
     </section>
 </body>

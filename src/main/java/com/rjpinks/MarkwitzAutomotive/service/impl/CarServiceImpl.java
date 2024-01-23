@@ -6,6 +6,7 @@ import com.rjpinks.MarkwitzAutomotive.models.Car;
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,21 +46,25 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void updateCar(CarDto carDto) {
-        Car car = mapToCar(carDto);
-        carRepository.save(car);
+        // Car car = mapToCar(carDto);
+        // carRepository.save(car);
+        Optional<Car> optionalCar = carRepository.findById(carDto.getId());
+
+        if (optionalCar.isPresent()) {
+            Car existingCar = optionalCar.get();
+            existingCar.setMake(carDto.getMake());
+            existingCar.setModel(carDto.getModel());
+            existingCar.setModelYear(carDto.getModelYear());
+            existingCar.setCarUrl(carDto.getCarUrl());
+            existingCar.setMilage(carDto.getMilage());
+    
+            carRepository.save(existingCar);
+        }
     }
 
-    private Car mapToCar(CarDto car) {
-        Car carDto = Car.builder()
-            .id(car.getId())
-            .make(car.getMake())
-            .model(car.getModel())
-            .modelYear(car.getModelYear())
-            .carUrl(car.getCarUrl())
-            .milage(car.getMilage())
-            .build();
-
-        return carDto;
+    @Override
+    public void delete(long carId) {
+        carRepository.deleteById(carId);
     }
 
     private CarDto mapToCarDto(Car car) {
