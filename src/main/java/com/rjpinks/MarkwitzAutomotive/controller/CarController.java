@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
+
+import jakarta.validation.Valid;
+
 import com.rjpinks.MarkwitzAutomotive.dto.CarDto;
 import com.rjpinks.MarkwitzAutomotive.models.Car;
 
@@ -96,6 +100,7 @@ public class CarController {
 
     // Update Car Mappings
 
+    // I am not adding validations to this because I do not want the vin to be a part of the Dto, but it would allow for database sniffing if I put the validation constraints on the actual model.
     @GetMapping("/cars/{carId}/update")
     public String updateCarForm(@PathVariable("carId") long carId, Model model) {
         CarDto car = carService.findCarById(carId);
@@ -104,9 +109,22 @@ public class CarController {
     }
 
     @PostMapping("/cars/{carId}/update")
-    public String updateCar(@PathVariable("carId") long carId, @ModelAttribute("car") CarDto car) {
+    public String updateCar(@PathVariable("carId") long carId, @Valid @ModelAttribute("car") CarDto car, BindingResult result, Model model) {
+        
+        if (result.hasErrors()) {
+            model.addAttribute("org.springframework.validation.BindingResult.car", result);
+            return "update-car-form";
+        }
+
         car.setId(carId);
         carService.updateCar(car);
+        return "redirect:/";
+    }
+
+    //Routes for Delete
+    @GetMapping("/cars/{carId}/delete")
+    public String deleteCarPage(@PathVariable("carId") long carId) {
+        carService.delete(carId);
         return "redirect:/";
     }
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en" xmls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
+      xmls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
   <meta charset="UTF-8">
@@ -46,7 +48,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-link">
+            <a class="button is-link" th:href="@{/users/sign-up}">
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">

@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -23,4 +26,7 @@ public class Car {
     private int modelYear;
     private String carUrl;
     private long milage;
+
+    @ManyToMany(mappedBy = "favorites")
+    private List<User> users = new ArrayList<>();
 }
