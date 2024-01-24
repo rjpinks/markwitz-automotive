@@ -1,5 +1,6 @@
 package com.rjpinks.MarkwitzAutomotive.controller;
 
+import com.rjpinks.MarkwitzAutomotive.dto.UserDto;
 import com.rjpinks.MarkwitzAutomotive.models.User;
 import com.rjpinks.MarkwitzAutomotive.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/users/sign-up")
-    public String saveUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+    public String saveUser(@ModelAttribute("user") UserDto userDto) {
+        userService.saveUser(userDto);
         return "redirect:/";
     }
 }

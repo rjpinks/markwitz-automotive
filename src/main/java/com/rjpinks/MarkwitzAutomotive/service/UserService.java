@@ -4,5 +4,5 @@ import com.rjpinks.MarkwitzAutomotive.dto.UserDto;
 import com.rjpinks.MarkwitzAutomotive.models.User;
 
 public interface UserService {
-    User saveUser(User user);
+    User saveUser(UserDto userDto);
 }

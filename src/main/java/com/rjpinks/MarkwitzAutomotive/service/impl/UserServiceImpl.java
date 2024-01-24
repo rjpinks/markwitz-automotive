@@ -1,5 +1,6 @@
 package com.rjpinks.MarkwitzAutomotive.service.impl;
 
+import com.rjpinks.MarkwitzAutomotive.dto.UserDto;
 import com.rjpinks.MarkwitzAutomotive.models.User;
 import com.rjpinks.MarkwitzAutomotive.repository.UserRepository;
 import com.rjpinks.MarkwitzAutomotive.service.UserService;
@@ -13,7 +14,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) { this.userRepository = userRepository; }
 
     @Override
-    public User saveUser(User user) {
+    public User saveUser(UserDto userDto) {
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setAdmin(userDto.isAdmin());
         return userRepository.save(user);
     }
 }
