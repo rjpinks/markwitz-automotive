@@ -18,7 +18,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" th:href="@{/}">
-        <img id="mwauto-image" th:src="@{/images/MWAuto.png}" width="150" height="150">
+        <img alt="logo image" id="mwauto-image" th:src="@{/images/MWAuto.png}" width="150" height="150">
       </a>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -38,7 +38,7 @@
           Contact Us
         </a>
 
-        <a th:href="@{/cars/new}" class="navbar-item">
+        <a th:href="@{/new}" class="navbar-item">
           Create New Listing
         </a>
 
@@ -48,11 +48,14 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-link" th:href="@{/users/sign-up}">
+            <a class="button is-link" th:href="@{/register}">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
+            <a th:href="@{/login}" class="button is-light">
               Log in
+            </a>
+            <a th:href="@{/logout}" class="button is-light">
+              Log out
             </a>
           </div>
         </div>

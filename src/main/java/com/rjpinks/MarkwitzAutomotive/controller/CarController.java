@@ -85,14 +85,14 @@ public class CarController {
 
     // Create Car Mappings
 
-    @GetMapping("/cars/new")
+    @GetMapping("/new")
     public String newCarForm(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
         return "new-car-form";
     }
 
-    @PostMapping("/cars/new")
+    @PostMapping("/new")
     public String saveCar(@ModelAttribute("car") Car car) {
         carService.saveCar(car);
         return "redirect:/";

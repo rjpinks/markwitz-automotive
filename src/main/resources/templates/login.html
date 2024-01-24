@@ -55,19 +55,27 @@
     </nav>
 </div>
 
-<!-- New User Form -->
+<!-- Login Form -->
 <div id="outer-form-container" class="columns">
     <div id="new-form-container" class="column is-one-third">
-        <h1>CREATE USER</h1>
-        <form role="form" method="POST" th:action="@{/users/sign-up}" th:object="${user}">
+        <h1>LOG IN</h1>
+        <div th:if="${param.error}" class="alert alert-success" th:text="${param.error}">
+        </div>
+        <div th:if="${param.fail}" class="alert alert-success">
+            Invalid username and password
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            You are logged out!
+        </div>
+        <form role="form" method="POST" th:action="@{/login}" th:object="${profile}">
             <div class="field">
-                <label for="email" class="label">Email</label>
+                <label for="username" class="label">Username</label>
                 <div class="control">
                     <input
-                            id="email"
+                            id="username"
                             class="input is-link"
                             type="text"
-                            th:field="*{email}"
+                            name="username"
                     >
                 </div>
             </div>
@@ -79,29 +87,13 @@
                             id="password"
                             class="input is-link"
                             type="password"
-                            th:field="*{password}"
+                            name="password"
                     >
                 </div>
             </div>
 
-<!--            NEED TO MAKE CONFIRM PASSWORD-->
-<!--            <div class="field">-->
-<!--                <label for="reconfirm-password" class="label">Reconfirm Password</label>-->
-<!--                <div class="control">-->
-<!--                    <input-->
-<!--                            id="reconfirm-password"-->
-<!--                            class="input is-link"-->
-<!--                            type="password"-->
-<!--                            -->
-<!--                    >-->
-<!--                </div>-->
-<!--            </div>-->
+            <button value="Log in" type="submit" class="button is-link">Login</button>
 
-            <div class="hidden-inputs">
-                <input type="hidden" th:field="*{admin}" th:value="${false}">
-            </div>
-
-            <button type="submit" class="button is-link">Submit</button>
         </form>
     </div>
 </div>

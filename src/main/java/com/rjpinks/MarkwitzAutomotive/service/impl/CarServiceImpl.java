@@ -1,8 +1,11 @@
 package com.rjpinks.MarkwitzAutomotive.service.impl;
 
 import com.rjpinks.MarkwitzAutomotive.dto.CarDto;
+import com.rjpinks.MarkwitzAutomotive.models.Profile;
 import com.rjpinks.MarkwitzAutomotive.repository.CarRepository;
 import com.rjpinks.MarkwitzAutomotive.models.Car;
+import com.rjpinks.MarkwitzAutomotive.repository.ProfileRepository;
+import com.rjpinks.MarkwitzAutomotive.security.SecurityUtil;
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
 
 import java.util.List;
@@ -15,10 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
+    private ProfileRepository profileRepository;
 
     @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImpl(CarRepository carRepository, ProfileRepository profileRepository) {
         this.carRepository = carRepository;
+        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -35,6 +40,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car saveCar(Car car) {
+        String username = SecurityUtil.getSessionUser();
+        Profile profile = profileRepository.findByUsername(username);
         return carRepository.save(car);
     }
 
