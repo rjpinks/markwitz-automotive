@@ -4,126 +4,135 @@
       xmls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" th:href="@{/css/index.css}">
-  <title layout:title-pattern="$CONTENT_TITLE - MWAuto">MWAuto</title>
-  <link rel="icon" th:href="@{/images/MWA.png}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title layout:title-pattern="$CONTENT_TITLE - MWAuto">MWAuto</title>
+    <link rel="icon" th:href="@{/images/MWA.png}" type="image/x-icon">
 </head>
 
 
 <!-- Navbar -->
 <div>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" th:href="@{/}">
-        <img id="mwauto-image" th:src="@{/images/MWAuto.png}" width="150" height="150">
-      </a>
-
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a th:href="@{/}" class="navbar-item">
-          Cars
-        </a>
-
-        <a th:href="@{/contact}" class="navbar-item">
-          Contact Us
-        </a>
-
-        <a th:href="@{/cars/new}" class="navbar-item">
-          Create New Listing
-        </a>
-
-        <div></div>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-link" th:href="@{/users/sign-up}">
-              <strong>Sign up</strong>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" th:href="@{/}">
+                <img alt="logo image" id="mwauto-image" th:src="@{/images/MWAuto.png}" width="150" height="150">
             </a>
-            <a class="button is-light">
-              Log in
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </a>
-          </div>
         </div>
-      </div>
-    </div>
-  </nav>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a th:href="@{/}" class="navbar-item">
+                    Cars
+                </a>
+
+                <a th:href="@{/contact}" class="navbar-item">
+                    Contact Us
+                </a>
+                <div style="margin-top: 8px;" th:if="${profile} != null">
+                    <div th:if="${profile.id} == 2">
+                        <a th:href="@{/new}" class="navbar-item">
+                            Create New Listing
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-link" th:href="@{/register}">
+                            <strong>Sign up</strong>
+                        </a>
+                        <div th:if="${profile} == null">
+                            <a th:href="@{/login}" class="button is-light">
+                                Log in
+                            </a>
+                        </div>
+                        <div th:if="${profile} != null">
+                            <a th:href="@{/logout}" class="button is-light">
+                                Log out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 </div>
 
 <div class="columns">
 
-  <!-- Side bar -->
-  <div class="column is-one-fifth">
-    <article id="side-bar" class="panel is-link">
-      <p class="panel-heading">Makes</p>
+    <!-- Side bar -->
+    <div class="column is-one-fifth">
+        <article id="side-bar" class="panel is-link">
+            <p class="panel-heading">Makes</p>
 
-      <!-- SEARCH BAR FOR FUTURE
-      <div class="panel-block">
-      <p class="control has-icons-left">
-        <input class="input is-primary" type="text" placeholder="Search">
-        <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
-    </div> -->
+            <!-- SEARCH BAR FOR FUTURE
+            <div class="panel-block">
+            <p class="control has-icons-left">
+              <input class="input is-primary" type="text" placeholder="Search">
+              <span class="icon is-left">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </span>
+            </p>
+          </div> -->
 
-      <a th:href="@{/}" class="panel-block is-active">
+            <a th:href="@{/}" class="panel-block is-active">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        All Cars
-      </a>
-      <a th:href="@{/cars/Ford}" class="panel-block is-active">
+                All Cars
+            </a>
+            <a th:href="@{/cars/Ford}" class="panel-block is-active">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Ford
-      </a>
-      <a th:href="@{/cars/Dodge}" class="panel-block">
+                Ford
+            </a>
+            <a th:href="@{/cars/Dodge}" class="panel-block">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Dodge
-      </a>
-      <a th:href="@{/cars/Chevy}" class="panel-block">
+                Dodge
+            </a>
+            <a th:href="@{/cars/Chevy}" class="panel-block">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Chevy
-      </a>
-      <a th:href="@{/cars/Nissan}" class="panel-block">
+                Chevy
+            </a>
+            <a th:href="@{/cars/Nissan}" class="panel-block">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Nissan
-      </a>
-      <a th:href="@{/cars/Mitsubishi}" class="panel-block">
+                Nissan
+            </a>
+            <a th:href="@{/cars/Mitsubishi}" class="panel-block">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Mitsubishi
-      </a>
-      <a th:href="@{/cars/Mazda}" class="panel-block">
+                Mitsubishi
+            </a>
+            <a th:href="@{/cars/Mazda}" class="panel-block">
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>
         </span>
-        Mazda
-      </a>
-    </article>
-  </div>
+                Mazda
+            </a>
+        </article>
+    </div>
 
-  <body layout:fragment="body" class="column"></body>
+    <body layout:fragment="body" class="column"></body>
 
 </div>
 

@@ -2,6 +2,9 @@ package com.rjpinks.MarkwitzAutomotive.controller;
 
 import java.util.List;
 
+import com.rjpinks.MarkwitzAutomotive.models.Profile;
+import com.rjpinks.MarkwitzAutomotive.security.SecurityUtil;
+import com.rjpinks.MarkwitzAutomotive.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +24,27 @@ import com.rjpinks.MarkwitzAutomotive.models.Car;
 @Controller
 public class CarController {
     private CarService carService;
+    private ProfileService profileService;
 
     @Autowired
-    public CarController(CarService carService) {
+    public CarController(CarService carService, ProfileService profileService) {
         this.carService = carService;
+        this.profileService = profileService;
     }
 
     // Reading Car Mappings
 
     @GetMapping("/")
     public String listCars(Model model) {
+        Profile profile = new Profile();
         List<CarDto> cars = carService.findAllCars();
+        String username = SecurityUtil.getSessionUser();
+        System.out.println("getSessionUser = " + username);
+        if (username != null) {
+            profile = profileService.findByEmail(username);
+            System.out.println(profile);
+            model.addAttribute("profile", profile);
+        }
         model.addAttribute("cars", cars);
         return "cars-page";
     }
@@ -85,14 +98,14 @@ public class CarController {
 
     // Create Car Mappings
 
-    @GetMapping("/cars/new")
+    @GetMapping("/new")
     public String newCarForm(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
         return "new-car-form";
     }
 
-    @PostMapping("/cars/new")
+    @PostMapping("/new")
     public String saveCar(@ModelAttribute("car") Car car) {
         carService.saveCar(car);
         return "redirect:/";
