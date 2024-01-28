@@ -18,7 +18,7 @@ Simply have JVM 21 installed.
 
 ## Usage
 
-### UPDATE:
+#### UPDATE:
 
 I have implemented a search bar, added a Google Map widget, and I did some refactoring of my controllers!
 
