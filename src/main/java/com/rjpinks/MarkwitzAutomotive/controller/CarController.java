@@ -1,6 +1,7 @@
 package com.rjpinks.MarkwitzAutomotive.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import com.rjpinks.MarkwitzAutomotive.models.Profile;
 import com.rjpinks.MarkwitzAutomotive.security.SecurityUtil;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
 
@@ -39,56 +37,49 @@ public class CarController {
         Profile profile = new Profile();
         List<CarDto> cars = carService.findAllCars();
         String username = SecurityUtil.getSessionUser();
-        System.out.println("getSessionUser = " + username);
         if (username != null) {
             profile = profileService.findByEmail(username);
-            System.out.println(profile);
             model.addAttribute("profile", profile);
         }
         model.addAttribute("cars", cars);
         return "cars-page";
     }
 
-    @GetMapping("/cars/Ford")
-    public String listFordCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Ford");
+    @GetMapping("cars/{carMake}")
+    public String listCarMake(@PathVariable("carMake") String carMake, Model model) {
+        Profile profile = new Profile();
+        if (carMake.equals("Chevy")) {
+            carMake = "Chevrolet";
+        }
+        List<CarDto> cars = carService.findAllCarsByMake(carMake);
+        String username = SecurityUtil.getSessionUser();
+        if (username != null) {
+            profile = profileService.findByEmail(username);
+            model.addAttribute("profile", profile);
+        }
         model.addAttribute("cars", cars);
-        return "ford-page";
+        String newMake = carMake.toLowerCase();
+        if (newMake.equals("chevrolet")) {
+            newMake = "chevy";
+        }
+        newMake += "-page"; // should be {make}-page
+        System.out.println(newMake);
+        return "cars-page";
     }
 
-    @GetMapping("/cars/Dodge")
-    public String listDodgeCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Dodge");
-        model.addAttribute("cars", cars);
-        return "dodge-page";
-    }
+    @GetMapping("/clubs/search")
+    public String searchCars(@RequestParam(value = "query") String query, Model model) {
+        String[] splQuery = query.split("");
+        splQuery[0] = splQuery[0].toUpperCase();
+        StringBuilder newQuery = new StringBuilder();
+        for (int i = 0; i < splQuery.length; i++) {
+            newQuery.append(splQuery[i]);
+        }
+        String finalQuery = newQuery.toString();
 
-    @GetMapping("/cars/Chevy")
-    public String listChevyCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Chevrolet");
+        List<CarDto> cars = carService.searchCars(finalQuery);
         model.addAttribute("cars", cars);
-        return "chevy-page";
-    }
-
-    @GetMapping("/cars/Nissan")
-    public String listNissanCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Nissan");
-        model.addAttribute("cars", cars);
-        return "nissan-page";
-    }
-
-    @GetMapping("/cars/Mitsubishi")
-    public String listMitsubishiCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Mitsubishi");
-        model.addAttribute("cars", cars);
-        return "mitsubishi-page";
-    }
-
-    @GetMapping("/cars/Mazda")
-    public String listMazdaCars(Model model) {
-        List<CarDto> cars = carService.findAllCarsByMake("Mazda");
-        model.addAttribute("cars", cars);
-        return "mazda-page";
+        return "cars-page";
     }
 
     @GetMapping("/contact")

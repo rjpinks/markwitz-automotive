@@ -25,33 +25,6 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a th:href="@{/}" class="navbar-item">
-                    Cars
-                </a>
-
-                <a th:href="@{/contact}" class="navbar-item">
-                    Contact Us
-                </a>
-
-                <div></div>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-link">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                            Log in
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </nav>
 </div>
 
@@ -59,7 +32,7 @@
 <div id="outer-form-container" class="columns">
     <div id="new-form-container" class="column is-one-third">
         <h1>LOG IN</h1>
-        <div th:if="${param.error}" class="alert alert-success" th:text="${param.error}">
+        <div th:if="${param.error}" class="alert alert-success" th:text="Log In Error!!!">
         </div>
         <div th:if="${param.fail}" class="alert alert-success">
             Invalid username and password

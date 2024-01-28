@@ -13,4 +13,6 @@ public interface CarService {
     void updateCar(CarDto car);
 
     void delete(long carId);
+
+    List<CarDto> searchCars(String query);
 }
