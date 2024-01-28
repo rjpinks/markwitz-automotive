@@ -74,6 +74,12 @@ public class CarServiceImpl implements CarService {
         carRepository.deleteById(carId);
     }
 
+    @Override
+    public List<CarDto> searchCars(String query) {
+        List<Car> cars = carRepository.searchCars(query);
+        return cars.stream().map(car -> mapToCarDto(car)).collect(Collectors.toList());
+    }
+
     private CarDto mapToCarDto(Car car) {
         CarDto carDto = CarDto.builder()
             .id(car.getId())

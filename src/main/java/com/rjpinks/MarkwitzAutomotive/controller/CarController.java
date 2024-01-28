@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.rjpinks.MarkwitzAutomotive.service.CarService;
 
@@ -48,7 +45,6 @@ public class CarController {
         return "cars-page";
     }
 
-
     @GetMapping("cars/{carMake}")
     public String listCarMake(@PathVariable("carMake") String carMake, Model model) {
         Profile profile = new Profile();
@@ -68,7 +64,22 @@ public class CarController {
         }
         newMake += "-page"; // should be {make}-page
         System.out.println(newMake);
-        return newMake;
+        return "cars-page";
+    }
+
+    @GetMapping("/clubs/search")
+    public String searchCars(@RequestParam(value = "query") String query, Model model) {
+        String[] splQuery = query.split("");
+        splQuery[0] = splQuery[0].toUpperCase();
+        StringBuilder newQuery = new StringBuilder();
+        for (int i = 0; i < splQuery.length; i++) {
+            newQuery.append(splQuery[i]);
+        }
+        String finalQuery = newQuery.toString();
+
+        List<CarDto> cars = carService.searchCars(finalQuery);
+        model.addAttribute("cars", cars);
+        return "cars-page";
     }
 
     @GetMapping("/contact")
