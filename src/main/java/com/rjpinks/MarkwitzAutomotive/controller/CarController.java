@@ -45,7 +45,7 @@ public class CarController {
         return "cars-page";
     }
 
-    @GetMapping("cars/{carMake}")
+    @GetMapping("/cars/{carMake}")
     public String listCarMake(@PathVariable("carMake") String carMake, Model model) {
         Profile profile = new Profile();
         if (carMake.equals("Chevy")) {
@@ -58,12 +58,6 @@ public class CarController {
             model.addAttribute("profile", profile);
         }
         model.addAttribute("cars", cars);
-        String newMake = carMake.toLowerCase();
-        if (newMake.equals("chevrolet")) {
-            newMake = "chevy";
-        }
-        newMake += "-page"; // should be {make}-page
-        System.out.println(newMake);
         return "cars-page";
     }
 
